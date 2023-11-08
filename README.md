@@ -42,7 +42,7 @@ $ yarn
 
 ```bash
 $ yarn prisma:migrate
-$ yarn prisma:generate
+$ yarn prisma generate
 
 ```
 
