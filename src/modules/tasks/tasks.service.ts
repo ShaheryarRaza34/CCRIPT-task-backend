@@ -36,7 +36,12 @@ export class TasksService {
       skip: query.offset,
     });
     const tasks = data.map((task) => {
-      return { id: task.id, task: task.task };
+      return {
+        id: task.id,
+        task: task.task,
+        completed: task.isActive,
+        createdAt: task.createdAt,
+      };
     });
     return { tasks };
   }
@@ -73,9 +78,12 @@ export class TasksService {
     if (!existingTask) {
       throw new NotFoundException(`Task Not Found`);
     }
-    const data = await this.prisma.tasks.delete({
+    const data = await this.prisma.tasks.update({
       where: {
         id,
+      },
+      data: {
+        isActive: !existingTask.isActive,
       },
     });
     return { message: `${data.task} deleted successfully` };

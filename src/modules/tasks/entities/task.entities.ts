@@ -6,4 +6,10 @@ export class Tasks {
 
   @ApiProperty({ type: String })
   task: string;
+
+  @ApiProperty({ type: Boolean })
+  completed: boolean;
+
+  @ApiProperty({ type: Date })
+  createdAt: Date;
 }
